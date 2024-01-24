@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reg</title>
+</head>
+<body style="background-image:url('{% static "images/beach.jpg" %}');background-repeat:no-repeat;">
+<h3> Login</h3><br>
+<form action="/login/" method="post">
+    {% csrf_token %}
+<input type="text" name="uname" placeholder="Enter username"><br>
+ <br>  <input type="password" name="pwd" placeholder="Enter password">
+ <br><br> <input type="submit">
+</form>
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+</body>
+</html>

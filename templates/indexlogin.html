@@ -1,0 +1,18 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>STATIC page tutorial</title>
+    </head>
+<body style="background-image:url('{% static "images/beach.jpg" %}');background-repeat:no-repeat;">
+
+    {% if user.is_authenticated %}
+        <h4>hello {{user.username}}. u have successfully logged in</h4>
+        <label style="background-color:white;"><a href="/logout"> logout </a></label>
+    {% else %}
+        <label style="background-color:white;"><a href="/register"> register </a></label>
+        <label style="background-color:white;"><a href="/login"> login </a></label>
+    {% endif %}
+</body>
+</html>
