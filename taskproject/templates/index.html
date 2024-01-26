@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+        <main>
+
+            <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+
+                <div class="section-overlay"></div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3D405B" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path></svg>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                            <h2 class="text-white">Welcome to the club</h2>
+
+                            <h1 class="cd-headline rotate-1 text-white mb-4 pb-2">
+                                <span>This Travel App is</span>
+                                <span class="cd-words-wrapper">
+                                    <b class="is-visible">Modern</b>
+                                    <b>Creative</b>
+                                    <b>Lifestyle</b>
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+            </section>
+
+
+            <section class="about-section section-padding" id="section_2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-lg-5 mb-4">About Travel App</h2>
+                        </div>
+
+                        <div class="col-lg-12 col-12 text-center me-auto mb-4 mb-lg-0">
+
+                            <p><strong>"A Seamless Journey with Our Travel Web App"</strong><br>
+
+
+In the fast-paced world we live in, planning the perfect vacation can be a daunting task. The plethora of destinations, accommodations, and activities available can overwhelm even the most seasoned travelers. This is where our travel web app, "Wanderlust Companion," comes to the rescue, offering a seamless and efficient solution for planning, booking, and experiencing unforgettable travel vacations.
+
+Wanderlust Companion is designed with the modern traveler in mind, providing a user-friendly interface that simplifies the entire travel planning process. Whether you're an adventure seeker, a culture enthusiast, or someone simply looking to unwind, our app caters to all preferences and ensures a personalized and memorable journey.
+</p>
+
+                        </div><div class="br"><br></div>
+{% for i in allpix %}
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0"><br>
+                            <div class="member-block">
+                                <div class="member-block-image-wrap">
+                                    <img src="{{i.img.url}}" class="member-block-image img-fluid" alt="">
+                                </div>
+
+                                <div class="member-block-info d-flex align-items-center">
+                                    <h4>{{i.name}}</h4>
+
+                                    <p class="ms-auto">{{i.desc}}</p>
+                                </div>
+                            </div>
+                        </div>
+{% endfor %}
+
+
+                    </div>
+                </div>
+            </section>
+
+
+
+                         <section class="about-section section-padding" >
+                <div class="container">
+                    <div class="row">           {% for i in allppl %}
+
+
+                        <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
+                            <div class="member-block">
+                                <div class="member-block-image-wrap">
+                                    <img src="{{i.img.url}}" class="member-block-image img-fluid" alt="" width="100px" height="300px" >
+                                </div>
+
+                                <div class="member-block-info d-flex align-items-center">
+                                    <h4>{{i.name}}</h4>
+
+                                    <p>{{i.desc}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+{% endfor %}          </div>
+                        </div>
+            </section>
+        </main>
+
+
+                {% endblock %}

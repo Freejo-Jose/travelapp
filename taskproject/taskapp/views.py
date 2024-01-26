@@ -6,7 +6,7 @@ from .models import Place,People
 def index(request):
     allpix=Place.objects.all()
     allppl=People.objects.all()
-    return render(request,'index.html',{'allpix':allpix,'allppl':allppl})
+    return render(request,'index.html',{'allpix':allpix,'allppl':allppl,'loginsuccess':False})
 
 
 def about(request):

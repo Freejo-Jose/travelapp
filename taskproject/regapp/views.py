@@ -6,6 +6,9 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 def register(request):
+    regsuccess=False
+    msg=''
+    uname=''
     if request.method=='POST':
         uname = request.POST["username"]
         fname = request.POST["fname"]
@@ -17,27 +20,29 @@ def register(request):
             msg=f'Username {uname} is already taken. use another Username'
             messages.info(request,msg)
             print(msg)
-            return redirect('reg')
+            return render(request, 'reg.html', {'msg': msg, 'regsuccess': regsuccess, 'uname': uname})
         elif User.objects.filter(email=email).exists():
             msg=f'Email {email} is already taken. use another email'
             messages.info(request,msg)
             print(msg)
-            return redirect('reg')
+            return render(request, 'reg.html', {'msg': msg, 'regsuccess': regsuccess, 'uname': uname})
         elif pwd1 != pwd2:
             msg = 'Passwords not matching'
             messages.info(request, msg)
             print(msg)
-            return redirect('reg')
+            return render(request, 'reg.html', {'msg': msg, 'regsuccess': regsuccess, 'uname': uname})
         else:
             user=User.objects.create_user(username=uname,first_name=fname,last_name=lname,email=email,password=pwd1)
             user.save()
-            msg=f'User {uname} Created successfully'
+            msg=f'User {uname} registered successfully'
             messages.info(request, msg)
             print(msg)
-            return redirect('login')
-    return render(request,'reg.html')
+            regsuccess=True
+            return render(request,'login.html',{'msg':msg,'regsuccess':regsuccess,'uname':uname})
+    return render(request,'reg.html',{'msg':msg,'regsuccess':regsuccess,'uname':uname})
 
 def login(request):
+    loginsuccess,msg,uname=False,'',''
     if request.method=='POST':
         uname=request.POST['uname']
         pwd=request.POST['pwd']
@@ -45,18 +50,22 @@ def login(request):
         if user is not None:
             auth.login(request,user)
             msg=f'User {uname} logged in successfully'
+            loginsuccess=True
             messages.info(request, msg)
             print(msg)
-            return render(request,'indexlogin.html')
+            return render(request,'index.html',{'msg':msg,'loginsuccess':loginsuccess,'uname':uname})
         else:
-            msg='invalid credentials'
+            msg='invalid username or password'
             messages.info(request, msg)
             print(msg)
-            return redirect('login')
-    return render(request,'login.html')
+            return render(request,'login.html',{'msg':msg,'loginsuccess':loginsuccess,'uname':uname})
+    return render(request, 'login.html', {'msg': msg, 'loginsuccess': loginsuccess, 'uname': uname})
 
 
 def logout(request):
+    logoutsuccess=True
     auth.logout(request)
-    print('logged out')
-    return render(request, 'indexlogin.html')
+    msg='logged out successfully'
+    print(msg)
+    return render(request, 'index.html', {'msg': msg, 'logoutsuccess': logoutsuccess})
+
